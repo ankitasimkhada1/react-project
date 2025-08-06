@@ -1,103 +1,61 @@
 import Image from "next/image";
+import NavBar from "./components/nav-bar";
+import Banner from "./components/banner";
+import TabButton from "./components/tab-btn";
+import PostCard from "./components/post-card";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const categories = [
+    {
+      'id': 1,
+      'title': 'Education'
+    },
+    {
+      'id': 2,
+      'title': 'Entertainment'
+    }
+  ]
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  const posts = [
+    {
+      'id': 1,
+      'title': 'Vermipura Earthwork Station',
+      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac justo ut ante mattis fringilla nec quis elit. Nulla a nisl sed neque dictum mattis. Suspendisse vitae semper arcu, eu auctor ante. Maecenas gravida neque nec lorem feugiat, sit amet viverra massa malesuada. Sed varius urna ac lacinia eleifend. Aliquam viverra dapibus ex convallis hendrerit. Aliquam rutrum, lorem vel ornare finibus, lorem est vulputate enim, quis faucibus urna dui at erat. Aliquam eget consequat dui, vel tristique nulla. Aliquam feugiat sed diam eget blandit. Nam enim sem, facilisis ut enim ac, viverra semper massa. Quisque eu mattis augue. Morbi ut sapien sed enim suscipit eleifend non non metus. Nullam ornare laoreet ligula, nec condimentum nunc. Sed vulputate lacinia elementum. Quisque molestie sapien ut ante venenatis, ut ultrices erat rhoncus. Cras elit ipsum, lacinia in consectetur vel, dapibus sit amet lacus. Integer sit amet elit condimentum, dictum quam commodo, tristique elit. Mauris at lorem quam. Ut ut bibendum massa, pretium vulputate ex. Mauris tincidunt nibh sit amet libero rutrum tincidunt. Maecenas molestie nunc nec sem fermentum, non aliquam lectus varius. Sed lacinia mattis purus, sed dignissim magna accumsan sit amet. Nulla dictum dui eget augue lacinia porttitor. Sed ultricies lectus quis suscipit vulputate. Curabitur dignissim dictum ex a ultrices. In vestibulum risus in consectetur commodo. Fusce enim nisi, luctus nec ultrices nec, lobortis nec erat. Nunc euismod, sem eu lacinia dictum, sem mi vestibulum ipsum, sed egestas augue justo quis sem. Nunc vitae tortor leo. Donec eget velit vitae purus consectetur rutrum. Praesent lorem turpis, elementum sit amet nibh vitae, volutpat ultricies lectus. Etiam id convallis turpis. Donec ac dapibus quam, non volutpat mauris. Nullam dapibus ullamcorper nulla ut malesuada. Integer aliquet enim nec urna rutrum volutpat. Aliquam erat volutpat. Aenean rutrum orci eget porta congue. Pellentesque in tincidunt nulla. Suspendisse eget est ligula.',
+      'category_id': 1,
+      'image': 'https://iuaebnn2tq.ufs.sh/f/fK77oCV0oDH7vemHTQsj0U4hVRWEf1PQCBDtgIGAO8o3c7v9'
+    },
+    {
+      'id': 2,
+      'title': 'Something is cooking',
+      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac justo ut ante mattis fringilla nec quis elit. Nulla a nisl sed neque dictum mattis. Suspendisse vitae semper arcu, eu auctor ante. Maecenas gravida neque nec lorem feugiat, sit amet viverra massa malesuada. Sed varius urna ac lacinia eleifend. Aliquam viverra dapibus ex convallis hendrerit. Aliquam rutrum, lorem vel ornare finibus, lorem est vulputate enim, quis faucibus urna dui at erat. Aliquam eget consequat dui, vel tristique nulla. Aliquam feugiat sed diam eget blandit. Nam enim sem, facilisis ut enim ac, viverra semper massa. Quisque eu mattis augue. Morbi ut sapien sed enim suscipit eleifend non non metus. Nullam ornare laoreet ligula, nec condimentum nunc. Sed vulputate lacinia elementum. Quisque molestie sapien ut ante venenatis, ut ultrices erat rhoncus. Cras elit ipsum, lacinia in consectetur vel, dapibus sit amet lacus. Integer sit amet elit condimentum, dictum quam commodo, tristique elit. Mauris at lorem quam. Ut ut bibendum massa, pretium vulputate ex. Mauris tincidunt nibh sit amet libero rutrum tincidunt. Maecenas molestie nunc nec sem fermentum, non aliquam lectus varius. Sed lacinia mattis purus, sed dignissim magna accumsan sit amet. Nulla dictum dui eget augue lacinia porttitor. Sed ultricies lectus quis suscipit vulputate. Curabitur dignissim dictum ex a ultrices. In vestibulum risus in consectetur commodo. Fusce enim nisi, luctus nec ultrices nec, lobortis nec erat. Nunc euismod, sem eu lacinia dictum, sem mi vestibulum ipsum, sed egestas augue justo quis sem. Nunc vitae tortor leo. Donec eget velit vitae purus consectetur rutrum. Praesent lorem turpis, elementum sit amet nibh vitae, volutpat ultricies lectus. Etiam id convallis turpis. Donec ac dapibus quam, non volutpat mauris. Nullam dapibus ullamcorper nulla ut malesuada. Integer aliquet enim nec urna rutrum volutpat. Aliquam erat volutpat. Aenean rutrum orci eget porta congue. Pellentesque in tincidunt nulla. Suspendisse eget est ligula.',
+      'category_id': 2,
+      'image': 'https://iuaebnn2tq.ufs.sh/f/fK77oCV0oDH7SeYQieSHvjlH9YNQO3krCnIzP158duyiMD4E'
+    },
+    {
+      'id': 3,
+      'title': 'What do you do?',
+      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac justo ut ante mattis fringilla nec quis elit. Nulla a nisl sed neque dictum mattis. Suspendisse vitae semper arcu, eu auctor ante. Maecenas gravida neque nec lorem feugiat, sit amet viverra massa malesuada. Sed varius urna ac lacinia eleifend. Aliquam viverra dapibus ex convallis hendrerit. Aliquam rutrum, lorem vel ornare finibus, lorem est vulputate enim, quis faucibus urna dui at erat. Aliquam eget consequat dui, vel tristique nulla. Aliquam feugiat sed diam eget blandit. Nam enim sem, facilisis ut enim ac, viverra semper massa. Quisque eu mattis augue. Morbi ut sapien sed enim suscipit eleifend non non metus. Nullam ornare laoreet ligula, nec condimentum nunc. Sed vulputate lacinia elementum. Quisque molestie sapien ut ante venenatis, ut ultrices erat rhoncus. Cras elit ipsum, lacinia in consectetur vel, dapibus sit amet lacus. Integer sit amet elit condimentum, dictum quam commodo, tristique elit. Mauris at lorem quam. Ut ut bibendum massa, pretium vulputate ex. Mauris tincidunt nibh sit amet libero rutrum tincidunt. Maecenas molestie nunc nec sem fermentum, non aliquam lectus varius. Sed lacinia mattis purus, sed dignissim magna accumsan sit amet. Nulla dictum dui eget augue lacinia porttitor. Sed ultricies lectus quis suscipit vulputate. Curabitur dignissim dictum ex a ultrices. In vestibulum risus in consectetur commodo. Fusce enim nisi, luctus nec ultrices nec, lobortis nec erat. Nunc euismod, sem eu lacinia dictum, sem mi vestibulum ipsum, sed egestas augue justo quis sem. Nunc vitae tortor leo. Donec eget velit vitae purus consectetur rutrum. Praesent lorem turpis, elementum sit amet nibh vitae, volutpat ultricies lectus. Etiam id convallis turpis. Donec ac dapibus quam, non volutpat mauris. Nullam dapibus ullamcorper nulla ut malesuada. Integer aliquet enim nec urna rutrum volutpat. Aliquam erat volutpat. Aenean rutrum orci eget porta congue. Pellentesque in tincidunt nulla. Suspendisse eget est ligula.',
+      'category_id': 2,
+      'image': 'https://iuaebnn2tq.ufs.sh/f/fK77oCV0oDH7vxBMK1sj0U4hVRWEf1PQCBDtgIGAO8o3c7v9'
+    },
+  ]
+  return (
+    <div className="px-10 py-5 flex flex-col gap-10">
+      {/* Tab Group */}
+      <div className="flex flex-row gap-10 justify-center">
+        <TabButton key={0} title="All"/>
+
+        {categories.map(category => (
+          <TabButton key={category.id} title={category.title}/>
+        ))}
+      </div>
+
+      {/* Posts */}
+      <div className="grid grid-cols-3 gap-10">
+        {posts.map(post => (
+          <PostCard key={post.id} post={post} />
+        ))}
+      </div>
     </div>
   );
 }
