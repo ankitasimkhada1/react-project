@@ -24,7 +24,7 @@ const PostCard = ({post}: {post: PostType}) => {
 
             <div className="text-right mt-2">
                 <a
-                    href=""
+                    href={`/post/${post.id}`}
                     className="px-7 py-2 text-sm bg-white text-black rounded-md">
                     View Full
                 </a>
