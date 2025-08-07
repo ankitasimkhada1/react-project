@@ -1,20 +1,19 @@
+"use client";
+
 import Image from "next/image";
 import NavBar from "./components/nav-bar";
 import Banner from "./components/banner";
 import TabButton from "./components/tab-btn";
 import PostCard from "./components/post-card";
+import { useEffect, useState } from "react";
+import { getCategories } from "./actions/category";
+
+interface CategoryType{
+    id: number
+    title: string
+}
 
 export default function Home() {
-  const categories = [
-    {
-      'id': 1,
-      'title': 'Education'
-    },
-    {
-      'id': 2,
-      'title': 'Entertainment'
-    }
-  ]
 
   const posts = [
     {
@@ -39,6 +38,22 @@ export default function Home() {
       'image': 'https://iuaebnn2tq.ufs.sh/f/fK77oCV0oDH7vxBMK1sj0U4hVRWEf1PQCBDtgIGAO8o3c7v9'
     },
   ]
+
+  const [categories, setCategories] = useState<CategoryType[]>([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const data = await getCategories(); // Call the function
+        setCategories(data);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
   return (
     <div className="px-10 py-5 flex flex-col gap-10">
       {/* Tab Group */}
