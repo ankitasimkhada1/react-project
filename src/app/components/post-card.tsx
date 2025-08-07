@@ -1,7 +1,7 @@
 interface PostType{
     id: number
     title: string
-    description: string
+    content: string
     category_id: number
     image: string
 }
@@ -19,7 +19,7 @@ const PostCard = ({post}: {post: PostType}) => {
             </h2>
 
             <p className="mt-2 line-clamp-3">
-                {post.description}
+                {post.content}
             </p>
 
             <div className="text-right mt-2">
