@@ -17,7 +17,7 @@ const LoginPage = () => {
             await login(email, password);
             router.push("/");
         } catch (error: any) {
-            console.error("Login failed:", error.message || error);
+            console.log("Login failed:", error.message);
         }
     }
 
