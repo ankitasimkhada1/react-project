@@ -55,13 +55,23 @@ export default function Home() {
 
   return (
     <div className="px-10 py-5 flex flex-col gap-10">
-      {/* Tab Group */}
-      <div className="flex flex-row gap-10 justify-center">
-        <TabButton key={0} title="All"/>
+      <div className="flex flex-row justify-between">
+        {/* Tab Group */}
+        <div className="flex flex-row gap-10 justify-center">
+          <TabButton key={0} title="All"/>
 
-        {categories.map(category => (
-          <TabButton key={category.id} title={category.title}/>
-        ))}
+          {categories.map(category => (
+            <TabButton key={category.id} title={category.title}/>
+          ))}
+        </div>
+
+        <div>
+          <a
+            href="/login"
+            className="px-7 py-2 text-sm bg-white text-black rounded-md">
+            Login
+          </a>
+        </div>
       </div>
 
       {/* Posts */}
