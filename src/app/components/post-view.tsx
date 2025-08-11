@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getPostData } from "../actions/post-view";
+import { getComments } from "../actions/get-comments";
 
 interface PostViewType{
     id: number
@@ -15,9 +16,23 @@ interface PostViewType{
     }
 }
 
+interface CommentType{
+    id: number
+    user_id: number
+    post_id: number
+    content: string
+    user: {
+        id: number
+        name: string
+        email: string
+    }
+}
+
 const PostView = ({postId}: {postId: number}) => {
 
     const [post, setPost] = useState<PostViewType>();
+
+    const [comments, setComments] = useState<CommentType[]>([]);
     
     useEffect(() => {
     const fetchPost = async () => {
@@ -31,6 +46,19 @@ const PostView = ({postId}: {postId: number}) => {
 
     fetchPost();
     },);
+    
+    useEffect(() => {
+    const fetchComments = async () => {
+        try {
+        const data = await getComments(postId); // Call the function
+        setComments(data);
+        } catch (error) {
+        console.error("Error fetching post:", error);
+        }
+    };
+
+    fetchComments();
+    }, []);
 
     return (
         <div className="flex flex-col gap-5">
@@ -45,6 +73,19 @@ const PostView = ({postId}: {postId: number}) => {
 
             <div className="text-justify">
                 {post?.content}
+            </div>
+
+            <div className="flex flex-col gap-5">
+                {comments.map(comment => (
+                    <div key={comment.id} className="flex flex-col gap-3 bg-white/10 p-5 rounded-md">
+                        <div className="font-semibold text-xl">
+                            {comment.user.name}
+                        </div>
+                        <div>
+                            {comment.content}
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );
