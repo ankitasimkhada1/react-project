@@ -1,4 +1,5 @@
-import { useRouter } from "next/router";
+"use client";
+import { useRouter } from "next/navigation";
 import { FormEvent } from "react";
 import { register } from "../actions/register";
 
