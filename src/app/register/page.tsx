@@ -1,4 +1,29 @@
+import { useRouter } from "next/router";
+import { FormEvent } from "react";
+import { register } from "../actions/register";
+
 const RegisterPage = () => {
+
+    const router = useRouter();
+    
+    async function onSubmit(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+
+        const formData = new FormData(event.currentTarget);
+        const name = formData.get("name")?.toString() || "";
+        const email = formData.get("email")?.toString() || "";
+        const password = formData.get("password")?.toString() || "";
+        const password_confirmation = formData.get("password_confirmation")?.toString() || "";
+
+        try {
+            await register(name, email, password, password_confirmation);
+            router.push("/login");
+        } catch (error: any) {
+            console.log("Login failed:", error.message);
+        }
+    }
+
+
     return (
         <div className="px-10 py-5 flex justify-center">
             <div className="w-[500px] border rounded-md p-5">
@@ -7,7 +32,7 @@ const RegisterPage = () => {
                 </h1>
 
                 <form
-                    // onSubmit={onSubmit}
+                    onSubmit={onSubmit}
                     className="mt-5 flex flex-col gap-5"
                     >
                     <div>
